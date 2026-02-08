@@ -25,21 +25,6 @@ This repository serves as a centralized technical portfolio showcasing my abilit
 
 ---
 
-## 🗂️ Repository Structure
-
-Projects/
-│
-├── Cybersecurity/
-├── Automation/
-├── Web-Development/
-├── Data-Analysis/
-├── Experiments/
-└── README.md
-
-
-Each directory contains independently documented projects.
-
----
 
 ## 🛠️ Technologies & Tools
 
