@@ -1,0 +1,649 @@
+/* /frontend-dashboard/src/App.css - FINAL CORRECTED VERSION */
+
+/* ==========================================================================
+   1. GLOBAL & ROOT STYLES
+   ========================================================================== */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a2533; /* Dark Navy Blue */
+  color: #ecf0f1; /* Light Gray Text */
+}
+
+/* ==========================================================================
+   2. LOGIN PAGE STYLES
+   ========================================================================== */
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #1a2533;
+  box-sizing: border-box;
+}
+
+.login-card {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  height: 550px;
+  background-color: #1e2a38;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.login-image-panel {
+  flex: 1;
+  position: relative;
+}
+
+.login-image-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) brightness(0.8);
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  color: white;
+  text-align: left;
+}
+
+.image-overlay h2 {
+  margin: 0 0 5px 0;
+  font-size: 2.2em;
+  font-weight: 600;
+}
+
+.image-overlay p {
+  margin: 0;
+  color: #bdc3c7;
+  font-size: 1.1em;
+}
+
+.login-form-panel {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.login-form-panel .form-content {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.login-form-panel h3 {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.login-form-panel p {
+  color: #bdc3c7;
+  margin-bottom: 30px;
+}
+
+.login-form-panel .form-group {
+  margin-bottom: 20px;
+}
+
+.login-form-panel .form-group label,
+.admin-form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #bdc3c7;
+  font-weight: 500;
+}
+
+.login-form-panel .form-group input,
+.admin-form .form-group input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: #12181f;
+  border: 1px solid #4a627a;
+  color: #ecf0f1;
+  border-radius: 6px;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form-panel .form-group input:focus,
+.admin-form .form-group input:focus {
+  outline: none;
+  border-color: #ff9933;
+  box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.2);
+}
+
+.login-button {
+  background-color: #ff9933;
+  color: #12181f;
+  font-weight: bold;
+  border: none;
+  padding: 14px 0;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #e68a2e;
+  transform: translateY(-2px);
+}
+
+.error-message {
+  color: #e74c3c;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+@media (max-width: 800px) {
+  .login-card {
+    flex-direction: column;
+    height: auto;
+    max-width: 450px;
+  }
+  .login-image-panel {
+    min-height: 200px;
+  }
+  .login-form-panel {
+    padding: 30px;
+  }
+}
+
+/* ==========================================================================
+   3. UNIFIED HEADER STYLES (THE FINAL FIX)
+   ========================================================================== */
+
+/* This targets BOTH the Admin and Analyst Dashboard headers */
+.App-header,
+.page-header {
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.App-header h1,
+.page-header h1 {
+  font-weight: 600;
+  font-size: 2.5em;
+  color: #ecf0f1;
+}
+
+/* **THE FIX:** This targets the controls container in BOTH headers */
+.App-header .header-controls,
+.page-header .header-controls {
+  position: fixed; /* Positions relative to the browser window */
+  top: 2rem; /* Same as the root padding */
+  right: 2rem; /* Same as the root padding */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 100; /* Ensures it stays on top of other content */
+}
+
+/* ==========================================================================
+   4. INCIDENT DASHBOARD STYLES
+   ========================================================================== */
+
+.dashboard {
+  text-align: left;
+}
+
+.dashboard h2 {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.8em;
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  background-color: #2c3e50;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  color: #ecf0f1;
+}
+
+.stat-label {
+  color: #bdc3c7;
+  font-size: 0.9em;
+}
+
+.stat-item.high-risk .stat-value {
+  color: #e74c3c;
+}
+
+.incident-table {
+  width: 100%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.incident-table th,
+.incident-table td {
+  border: 1px solid #4a627a;
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.incident-table th {
+  background-color: #34495e;
+  font-weight: bold;
+}
+
+.verdict-malicious {
+  background-color: rgba(231, 76, 60, 0.2) !important;
+  font-weight: bold;
+}
+
+.verdict-suspicious {
+  background-color: rgba(230, 126, 34, 0.2) !important;
+}
+
+.incident-table tbody tr:hover {
+  background-color: #34495e;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   5. ADMIN PAGE STYLES
+   ========================================================================== */
+
+.page-container {
+  width: 100%;
+  text-align: center;
+}
+
+.page-main-content {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-panel-card {
+  background-color: #1e2a38;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid #4a627a;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 700px;
+  text-align: left;
+}
+
+.admin-panel-header {
+  border-bottom: 1px solid #4a627a;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-panel-header h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #fff;
+}
+
+.admin-panel-body p {
+  color: #bdc3c7;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.admin-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.admin-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #12181f;
+  background-color: #ff9933;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.admin-button:hover {
+  background-color: #e68a2e;
+  transform: translateY(-2px);
+}
+
+.admin-panel-body .message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success-message {
+  color: #2ecc71;
+  background-color: rgba(46, 204, 113, 0.1);
+  border: 1px solid #2ecc71;
+}
+
+.admin-panel-body .error-message {
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+  border: 1px solid #e74c3c;
+}
+
+/* ==========================================================================
+   6. SHARED & UTILITY STYLES
+   ========================================================================== */
+.nav-link {
+  color: #ff9933;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+.nav-link:hover {
+  text-decoration: underline;
+  color: #e68a2e;
+}
+
+.user-info {
+  font-size: 0.9em;
+  color: #bdc3c7;
+  white-space: nowrap;
+}
+
+.logout-button {
+  background: #34495e;
+  color: #ecf0f1;
+  border: 1px solid #4a627a;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   7. MODAL STYLES (For Dashboard)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background: #2c3e50;
+  padding: 30px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 700px;
+  color: #ecf0f1;
+  border: 1px solid #4a627a;
+}
+
+.modal-content pre {
+  background-color: #1a2533;
+  padding: 15px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.modal-actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.modal-actions button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+ 
+}
+.action-button.escalate {
+  background-color: #c0392b;
+  color: white;
+}
+.action-button.close-incident {
+  background-color: #27ae60;
+  color: white;
+}
+
+
+.modal-content .file-actions {
+  background-color: #1e2a38;
+  border: 1px solid #4a627a;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.modal-content .file-actions h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.modal-content .file-actions p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #bdc3c7;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.modal-content .file-actions-buttons {
+  display: flex;
+  /* --- THIS IS THE REQUESTED CHANGE --- */
+  gap: 1rem; /* Creates space between the Preview and Download buttons */
+}
+
+.action-button.preview {
+  background-color: #3498db;
+  color: white;
+}
+.action-button.preview:hover {
+  background-color: #2980b9;
+}
+
+.action-button.download {
+  background-color: #95a5a6;
+  color: #1e2a38;
+  font-weight: bold;
+}
+.action-button.download:hover {
+  background-color: #7f8c8d;
+}
+
+/* ==========================================================================
+   9. NEW ANALYSIS RESULT STYLES IN MODAL
+   ========================================================================== */
+
+.analysis-results-section {
+  background-color: #1e2a38;
+  border: 1px solid #4a627a;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.results-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.summary-item .summary-label {
+  display: block;
+  font-size: 0.9em;
+  color: #bdc3c7;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.summary-item .summary-value {
+  display: block;
+  font-size: 1.8em;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* --- Severity Color Coding --- */
+.summary-value.severity-critical { color: #e74c3c; } /* Red */
+.summary-value.severity-high { color: #f39c12; } /* Orange */
+.summary-value.severity-medium { color: #f1c40f; } /* Yellow */
+.summary-value.severity-low { color: #3498db; } /* Blue */
+.summary-value.severity-info { color: #95a5a6; } /* Grey */
+
+.summary-text {
+  font-style: italic;
+  color: #ecf0f1;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #4a627a;
+}
+
+.analysis-results-section h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.analysis-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.analysis-details-table th,
+.analysis-details-table td {
+  padding: 10px;
+  border: 1px solid #4a627a;
+  text-align: left;
+}
+
+.analysis-details-table th {
+  background-color: #34495e;
+}
+
+.raw-data-accordion {
+  margin-top: 1.5rem;
+  border-top: 1px solid #4a627a;
+  padding-top: 1.5rem;
+}
+
+.accordion-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #ecf0f1;
+  text-align: left;
+}
+
+.accordion-toggle h4 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.accordion-toggle .arrow {
+  font-size: 0.8em;
+  transition: transform 0.2s ease-in-out;
+}
+
+.accordion-toggle .arrow.right {
+  transform: rotate(0deg);
+}
+
+.accordion-toggle .arrow.down {
+  transform: rotate(90deg);
+}
+
+.accordion-content { /* This targets the <pre> tag */
+  margin-top: 1rem;
+  background-color: #1a2533;
+  padding: 15px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 300px; /* Still constrain height when visible */
+  overflow-y: auto;
+  border: 1px solid #4a627a;
+}
+
+.resolution-note {
+  background-color: rgba(46, 204, 113, 0.1);
+  border: 1px solid #2ecc71;
+  color: #2ecc71;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}

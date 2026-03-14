@@ -1,0 +1,144 @@
+# /intake-service/docker-compose.yml
+
+services:
+  # --- BACKEND SERVICES ---
+
+  auth-service:
+    build:
+      context: ../auth-service
+    ports:
+      - "8001:8001"
+    volumes:
+      - ../auth-service/app:/code/app
+      - ../common/app:/code/common_app
+    env_file:
+      - ../auth-service/.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  intake-service:
+    build:
+      context: . # Current directory
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/code/app
+      - ../common/app:/code/common_app
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  url-analysis-service:
+    build:
+      context: ../url-analysis-service
+    volumes:
+      - ../url-analysis-service/app:/code/app
+      - ../common/app:/code/common_app
+    env_file:
+      - ../url-analysis-service/.env
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  notification-service:
+    build:
+      context: ../notification-service
+    volumes:
+      - ../notification-service/app:/code/app
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  file-analysis-service:
+    build:
+      context: ../file-analysis-service # Correct Path: Go up one level, then into the service folder
+    volumes:
+      - ../file-analysis-service/app:/code/app # Mount the service's specific code
+      - ../common/app:/code/common_app       # Mount the shared common code
+    env_file:
+      - ../file-analysis-service/.env      # Point to the service's specific .env file
+    depends_on:
+      db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+
+  # --- FRONTEND SERVICES ---
+
+  frontend-dashboard: # CERT Analyst/Admin Portal
+    build:
+      context: ../frontend-dashboard
+    ports:
+      - "3000:80"
+    depends_on:
+      - intake-service
+      - auth-service
+
+  user-portal: # Defence Personnel/Family Submission Portal
+    build:
+      context: ../user-portal
+    ports:
+      - "3001:80"
+    depends_on:
+      - intake-service
+      - auth-service
+
+  # --- INFRASTRUCTURE SERVICES ---
+
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env # Uses the postgres variables from intake-service .env
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3.11-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  minio:
+    image: minio/minio:latest
+    # ports:
+      # - "9000:9000"  
+      # - "9001:9001"  
+    volumes:
+      - minio_data:/data
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ACCESS_KEY}
+      - MINIO_ROOT_PASSWORD=${MINIO_SECRET_KEY}
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+volumes:
+  postgres_data:
+  minio_data:

@@ -1,0 +1,499 @@
+/* /user-portal/src/App.css */
+
+/* --- Main App Layout & Header --- */
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.App-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #d9e2ec;
+  margin-bottom: 2rem;
+}
+
+.header-brand h1 {
+  margin: 0;
+  font-size: 1.8em;
+  color: #0d1b2a;
+}
+
+.header-brand p {
+  margin: 2px 0 0 0;
+  color: #627d98;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-nav .user-info {
+  color: #486581;
+}
+
+.header-nav nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #334e68;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+  color: #102a43;
+  border-bottom-color: #243b53;
+}
+
+.logout-button {
+  padding: 8px 16px;
+  background-color: #d9e2ec;
+  border: 1px solid #bcccdc;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #334e68;
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #c5d4e4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Form & Table Containers (The White Cards) --- */
+.form-container,
+.table-container {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(188, 204, 220, 0.4);
+  max-width: 750px;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+.form-container h2,
+.table-container h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.form-container > p {
+  margin-bottom: 2rem;
+  color: #627d98;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #334e68;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="url"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #bcccdc;
+  border-radius: 6px;
+  font-size: 1em;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #243b53;
+  box-shadow: 0 0 0 3px rgba(36, 59, 83, 0.1);
+}
+
+.form-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #fff;
+  background-color: #243b53;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-button:hover {
+  background-color: #102a43;
+}
+
+.form-button:disabled {
+  background-color: #9fb3c8;
+  cursor: not-allowed;
+}
+
+/* --- Special Form Elements --- */
+.submission-type-selector {
+  display: flex;
+  gap: 1rem;
+  background-color: #f0f4f8;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.submission-type-selector label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submission-type-selector input[type="radio"] {
+  display: none;
+}
+
+.submission-type-selector input[type="radio"]:checked + span {
+  font-weight: bold;
+  color: #102a43;
+}
+
+.submission-type-selector label:has(input:checked) {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sub-link {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* --- Message Styles --- */
+.message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.error-message {
+  margin-top: 1.5rem;
+  color: #c0392b;
+  background-color: rgba(192, 57, 43, 0.1);
+  border: 1px solid rgba(192, 57, 43, 0.2);
+}
+
+.success-message {
+  margin-top: 1.5rem;
+  color: #27ae60;
+  background-color: rgba(39, 174, 96, 0.1);
+  border: 1px solid rgba(39, 174, 96, 0.2);
+}
+
+/* --- My Incidents Table --- */
+.table-container {
+  max-width: 100%; /* Allow table to be wider */
+}
+
+.user-incident-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-incident-table th,
+.user-incident-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.user-incident-table th {
+  font-weight: 600;
+  color: #486581;
+}
+
+.user-incident-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+
+/* /user-portal/src/App.css (ADD TO BOTTOM) */
+
+/* Style for the active NavLink in the header */
+.header-nav a.active {
+  color: #102a43;
+  border-bottom-color: #243b53;
+}
+
+/* Live Threat News Feed Styles */
+.threat-news-feed {
+  margin-top: 1rem;
+}
+
+.articles-container {
+  max-height: 700px;
+  overflow-y: auto;
+  padding-right: 10px; /* Space for the scrollbar */
+}
+
+.news-article-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.news-article-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease;
+  border-radius: 6px;
+}
+.news-article-card:hover {
+  background-color: #f8fafc;
+}
+.news-article-card:last-child {
+  border-bottom: none;
+}
+
+.article-image-container {
+  flex-shrink: 0;
+  width: 120px;
+  height: 80px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #e2e8f0;
+}
+
+.article-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-content {
+  flex-grow: 1;
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.article-source {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #243b53;
+}
+
+.article-date {
+  font-size: 0.8em;
+  color: #627d98;
+}
+
+.article-title {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* /user-portal/src/App.css (ADD TO BOTTOM) */
+
+/* --- OTX Threat Intelligence Feed Styles --- */
+.news-article-card.no-image {
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.news-article-card.no-image .article-title {
+  font-size: 1.1em;
+}
+
+.news-article-card.no-image .article-summary {
+  font-size: 0.95em;
+  color: #486581;
+  margin: 0;
+}
+
+.news-article-card.no-image .article-header {
+  margin-bottom: 0.75rem;
+}
+
+/* --- Severity Tag Styles --- */
+.severity-tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.severity-critical { background-color: #c0392b; } /* Red */
+.severity-high { background-color: #e67e22; } /* Orange */
+.severity-medium { background-color: #f1c40f; color: #333; } /* Yellow */
+.severity-low { background-color: #2980b9; } /* Blue */
+
+/* /user-portal/src/App.css (Ensure this block is at the bottom) */
+
+/* --- Live Threat News Feed Styles --- */
+.threat-news-feed h3 {
+  font-size: 1.4em;
+}
+
+.articles-container {
+  max-height: 700px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.news-article-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.news-article-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px;
+}
+.news-article-card:hover {
+  background-color: #f8fafc;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(188, 204, 220, 0.6);
+  z-index: 10;
+  position: relative;
+}
+.news-article-card:last-child {
+  border-bottom: none;
+}
+
+.article-image-container {
+  flex-shrink: 0;
+  width: 150px;
+  height: 100px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #e2e8f0;
+}
+
+.article-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-content {
+  flex-grow: 1;
+}
+
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.article-source {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #243b53;
+  text-transform: capitalize;
+}
+
+.article-date {
+  font-size: 0.8em;
+  color: #627d98;
+}
+
+.article-title {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #102a43;
+  line-height: 1.5;
+}
+
+/* /frontend-dashboard/src/App.css (ADD THIS ENTIRE BLOCK TO THE BOTTOM) */
+
+/* ==========================================================================
+   8. NEW MODAL FILE ACTIONS STYLES
+   ========================================================================== */
+
+.modal-content .file-actions {
+  background-color: #1e2a38;
+  border: 1px solid #4a627a;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.modal-content .file-actions h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.modal-content .file-actions p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #bdc3c7;
+  font-family: monospace; /* Good for showing filenames */
+  word-break: break-all;
+}
+
+.modal-content .file-actions-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-button.preview {
+  background-color: #3498db; /* Blue for 'safe' preview */
+  color: white;
+}
+.action-button.preview:hover {
+  background-color: #2980b9;
+}
+
+.action-button.download {
+  background-color: #95a5a6; /* Grey for 'serious' download */
+  color: #1e2a38;
+  font-weight: bold;
+}
+.action-button.download:hover {
+  background-color: #7f8c8d;
+}

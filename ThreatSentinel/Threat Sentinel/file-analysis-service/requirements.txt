@@ -1,0 +1,11 @@
+# /file-analysis-service/requirements.txt
+
+pika==1.3.2
+SQLAlchemy==2.0.23
+psycopg2-binary==2.9.9
+minio==7.1.14
+pydantic==2.5.3
+# --- Analysis Specific Libraries ---
+python-magic==0.4.27     # For identifying file types
+oletools==0.60.1         # For analyzing MS Office docs for macros
+exifread==3.0.0          # For reading image metadata (OPSEC risks)
