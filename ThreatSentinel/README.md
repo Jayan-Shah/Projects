@@ -119,58 +119,7 @@ This ensures **transparency and investigation accountability**.
 
 # 🏗 System Architecture
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![Cyber Defence Portal Architecture](docs/mermaid-diagram%20(2).png)
 
 ---
 
@@ -254,23 +203,27 @@ Used for:
 
 ---
 
-# 📁 Project Structure
+## 📁 Project Structure
+
+
 ThreatSentinel
 │
-├── auth-service
-├── intake-service
-├── file-analysis-service
-├── url-analysis-service
-├── notification-service
+├── auth-service # Authentication & user management
+├── intake-service # File and URL submission handling
+├── file-analysis-service # Malware and file inspection
+├── url-analysis-service # Suspicious URL investigation
+├── notification-service # Alerts and notifications
 │
-├── frontend-dashboard
-├── user-portal
+├── frontend-dashboard # Analyst & Admin React dashboard
+├── user-portal # Defence personnel reporting portal
 │
-├── common
+├── common # Shared models and utilities
 │
-├── docker-compose.yml
+├── docs # Architecture diagrams
+│ └── architecture.png
+│
+├── docker-compose.yml # Container orchestration
 └── README.md
-
 
 
 ---
