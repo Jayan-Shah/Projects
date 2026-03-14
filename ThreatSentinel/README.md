@@ -119,7 +119,7 @@ This ensures **transparency and investigation accountability**.
 
 # 🏗 System Architecture
 
-![Cyber Defence Portal Architecture](docs/mermaid-diagram%20(2).png)
+![Cyber Defence Portal Architecture](docs/architecture.png)
 
 ---
 
@@ -205,99 +205,90 @@ Used for:
 
 ## 📁 Project Structure
 
-
+```
 ThreatSentinel
 │
-├── auth-service # Authentication & user management
-├── intake-service # File and URL submission handling
-├── file-analysis-service # Malware and file inspection
-├── url-analysis-service # Suspicious URL investigation
-├── notification-service # Alerts and notifications
+├── auth-service              # Authentication & user management
+├── intake-service            # File and URL submission handling
+├── file-analysis-service     # Malware and file inspection
+├── url-analysis-service      # Suspicious URL investigation
+├── notification-service      # Alerts and notifications
 │
-├── frontend-dashboard # Analyst & Admin React dashboard
-├── user-portal # Defence personnel reporting portal
+├── frontend-dashboard        # Analyst & Admin React dashboard
+├── user-portal               # Defence personnel reporting portal
 │
-├── common # Shared models and utilities
+├── common                    # Shared models and utilities
 │
-├── docs # Architecture diagrams
-│ └── architecture.png
+├── docs                      # Architecture diagrams
+│   └── architecture.png
 │
-├── docker-compose.yml # Container orchestration
+├── docker-compose.yml        # Container orchestration
 └── README.md
-
-
+```
 ---
 
-# ⚙️ Running the Platform
+### 🚀 Start the Platform
 
-## Prerequisites
-
-Install:
-
-- Docker
-- Docker Compose
-
----
-
-## Start the platform
-
-From the project root run:
+From the project root directory run:
 
 ```bash
 docker compose build
 docker compose up
+```
 
+This command will:
 
-🌐 Access the Platform
-User Portal
-http://localhost:3000
-Analyst Dashboard
-http://localhost:3001
-MinIO Console
-http://localhost:9001
-RabbitMQ Management
-http://localhost:15672
+- Build all microservice containers
+- Start the application stack
+- Initialize supporting infrastructure:
+  - PostgreSQL
+  - RabbitMQ
+  - MinIO
 
-Default credentials:
+---
 
-username: guest
-password: guest
-🔑 Default Admin Credentials
+### 🌐 Access the Platform
+
+Once the containers are running, the services will be available at:
+
+| Service | URL |
+|--------|------|
+| User Portal | http://localhost:3000 |
+| Analyst Dashboard | http://localhost:3001 |
+| MinIO Console | http://localhost:9001 |
+| RabbitMQ Management | http://localhost:15672 |
+
+---
+
+### 🔑 Default Credentials
+
+#### RabbitMQ
+
+```
+Username: guest
+Password: guest
+```
+
+#### Admin Account
+
+```
 Username: ArmyChief
 Password: SuperIndiaIsBest!
+```
 
-Admin can create analyst accounts from the dashboard.
+The **admin user** can create analyst accounts from the dashboard.
 
-🔒 Security Considerations
+---
 
-The platform implements:
+### 🔐 Security Considerations
 
-Role-based access control
+The platform implements several security measures:
 
-Secure object storage
+- Role-based access control (**RBAC**)
+- Secure object storage using **MinIO**
+- Asynchronous task processing with **RabbitMQ**
+- Incident audit logging
+- Controlled analyst access
 
-Asynchronous message processing
 
-Incident audit logging
 
-Controlled analyst access
-
-🔮 Future Improvements
-
-Potential enhancements include:
-
-Malware sandbox execution
-
-VirusTotal integration
-
-Threat intelligence feeds
-
-SIEM integration
-
-Automated IOC extraction
-
-ML-based malware classification
-
-📜 License
-
-This project is developed for educational and research purposes.
